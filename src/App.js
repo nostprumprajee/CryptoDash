@@ -62,7 +62,6 @@ export default function App() {
     };
     let jsonMsg = JSON.stringify(msg);
     ws.current.send(jsonMsg);
-
     let historicalDataURL = `${url}/products/${pair}/candles?granularity=86400`;
     const fetchHistoricalData = async () => {
       let dataArr = [];
@@ -100,8 +99,10 @@ export default function App() {
 
     setpair(e.target.value);
   };
+  
   return (
     <div className="container">
+      <h1>CRYPTO DASH</h1>
       {
         <select name="currency" value={pair} onChange={handleSelect}>
           {currencies.map((cur, idx) => {
@@ -113,7 +114,7 @@ export default function App() {
           })}
         </select>
       }
-      <Dashboard price={price} data={pastData} />
+      <Dashboard price={price} data={pastData} pair={pair}/>
     </div>
   );
 }
